@@ -16,7 +16,7 @@
   top: 0;
   z-index: 1000;
   width: 100%;
-  height: 5vh;
+  height: 48px;
   margin-bottom: 0;
   background-color: transparent;
   border: 1px solid transparent;
@@ -151,7 +151,7 @@ ul.nav_right li.icon_navi a.icon:hover {
 }
 @media screen and (max-width: 768px) {
   .navbar {
-    height: 4vh;
+    height: 40px;
   }
 
   ul.nav_right li {
@@ -159,6 +159,7 @@ ul.nav_right li.icon_navi a.icon:hover {
   }
 }
 
+/* コンテンツ */
 html,
 body,
 div,
@@ -271,33 +272,57 @@ a {
   text-align: center;
 }
 
+.contents_top {
+  padding-bottom: 60px;
+}
+
 .tittle {
   position: relative;
-  padding-top: 50px;
+  padding-bottom: 24px;
   font-family: Avenir;
   font-size: 28px;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.85);
+  color: rgba(0, 0, 0, 0.8);
   text-align: center;
 }
 
 .sub_tittle {
   position: relative;
-  padding-bottom: 50px;
+  padding-bottom: 24px;
   font-family: Avenir;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 800;
-  color: rgba(0, 0, 0, 0.85);
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.description {
+  position: relative;
+  padding-bottom: 24px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.description_en {
+  position: relative;
+  padding-bottom: 16px;
+  font-family: "Avenir";
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.8);
   text-align: center;
 }
 
 .coming_soon {
   position: relative;
-  margin: 20px;
+  margin: 16px;
   font-family: Avenir;
   font-size: 18px;
   font-weight: light;
-  color: #000000;
+  color: rgba(0, 0, 0, 0.8);
   text-align: center;
 }
 
@@ -307,16 +332,7 @@ a {
   font-family: Avenir;
   font-size: 18px;
   line-height: 22px;
-  color: #000000;
-  text-align: center;
-}
-
-.description {
-  position: relative;
-  margin: 20px 0;
-  font-family: Avenir;
-  font-size: 15px;
-  color: #000000;
+  color: rgba(0, 0, 0, 0.8);
   text-align: center;
 }
 
@@ -335,7 +351,7 @@ a {
   font-size: 200px;
   font-weight: 900;
   line-height: 150px;
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.1);
   text-align: left;
 }
 
@@ -343,6 +359,7 @@ h1 {
   position: relative;
   height: 100px;
   margin: 0 auto;
+  padding-bottom: 80px;
   text-align: center;
 }
 
@@ -413,6 +430,12 @@ img {
   max-height: 100%;
 }
 
+h1 img {
+  width: auto;
+  max-width: 100%;
+  height: 100px;
+}
+
 .imgposition_1 {
   position: relative;
   width: 400px;
@@ -436,7 +459,7 @@ img {
 @media screen and (min-width: 769px) {
   .shadow,
   .shadow_non {
-    margin: 10px 20px 0 20px;
+    margin: 16px 8px;
   }
 }
 
@@ -496,7 +519,7 @@ p.pd_10 {
 
 @media screen and (max-width: 768px) {
   .contents_top {
-    padding: 0 10px;
+    padding: 0 8px;
   }
 
   .top_num {
@@ -506,7 +529,7 @@ p.pd_10 {
     font-family: Avenir;
     font-size: 150px;
     font-weight: 900;
-    color: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.1);
     text-align: center;
   }
 
@@ -551,7 +574,7 @@ p.pd_10 {
   font-size: 35px;
   font-weight: 500;
   line-height: 70px;
-  color: rgba(0, 0, 0, 0.85);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 570px) {
@@ -560,7 +583,7 @@ p.pd_10 {
     font-size: 25px;
     font-weight: 400;
     line-height: 30px;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(0, 0, 0, 0.8);
   }
 }
 
@@ -592,8 +615,9 @@ p.pd_10 {
 
 .container {
   position: relative;
-  width: 100%;
+  max-width: 980px;
   margin: 0 auto;
+  padding: 16px;
 }
 
 .print_bg_1 {
