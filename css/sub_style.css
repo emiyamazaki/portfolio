@@ -297,6 +297,8 @@ a {
 }
 
 .description {
+  max-width: 980px;
+  margin: auto;
   position: relative;
   padding-bottom: 24px;
   font-family: "Noto Sans JP", sans-serif;
@@ -611,6 +613,15 @@ p.pd_10 {
   display: inline-block;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .container {
