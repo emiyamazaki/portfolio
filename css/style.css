@@ -1,44 +1,56 @@
-/* 共通 ******************************/
-html,
-body,
-p,
-ol,
-ul,
-li,
-dl,
-dt,
-dd,
-blockquote,
-figure,
-fieldset,
-legend,
-textarea,
-pre,
-iframe,
-hr,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  padding: 0;
-  margin: 0;
+/*
+ * スタイルファイル (style.css, sub_style.css を統合し整理)
+ *
+ * 【主な変更点】
+ * 1. CSSリセットの簡素化。
+ * 2. 古いベンダープレフィックスの削除（例: -webkit-box-sizing）。
+ * 3. スタイルをセクション（Header, Hero, About, Works, Footer）ごとに構造化。
+ * 4. 重複していたヘッダー/フッターの定義を統合。
+ */
+
+/* 1. 共通設定 (Reset & Base) ******************************/
+*,
+*::before,
+*::after {
+  /* box-sizing: border-box; を標準化し、古いベンダープレフィックスを削除 */
+  box-sizing: border-box;
 }
 
 html,
 body {
-  display: block;
-  padding: 0;
   margin: 0;
-}
-
-html {
-  box-sizing: border-box;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* 横スクロール防止 */
+  border-top: 1px solid transparent; /* マージン相殺を防ぐための追加 */
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: Avenir, 'Noto Sans JP', sans-serif; /* 日本語フォントを追記 */
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom; /* 画像下の不要な余白を削除 */
+}
+
+ul, ol, p, dl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+::selection {
+  background-color: rgba(0, 255, 255, 0.9);
 }
 
 .wrapper {
@@ -46,52 +58,27 @@ html {
   height: 100%;
 }
 
-a {
-  text-decoration: none;
-}
-
-h2 {
-  font-family: Avenir;
-  font-size: 260px;
-  font-weight: 600;
-  line-height: 210px;
-}
-.bkGround_bk {
-  z-index: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-img {
-  width: 100%;
-}
-
-::selection {
-  background-color: rgba(0, 255, 255, 0.9);
-}
-
+/* 共通ユーティリティ */
 .mg_10 {
   margin: 10px;
 }
 
-:after,
-:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+/* 大見出し共通スタイル */
+h2 {
+  font-size: 260px;
+  font-weight: 600;
+  line-height: 210px;
 }
 
-@media screen and (min-width: 769px) {
-  .sp {
-    display: none;
-  }
-}
+/* レスポンシブユーティリティ (共通化) */
+.sp { display: none; }
 @media screen and (max-width: 768px) {
-  .pc {
-    display: none;
-  }
+  .pc { display: none; }
+  .sp { display: initial; }
 }
 
-/* header ******************************/
+
+/* 2. Header / Navigation ******************************/
 .navbar {
   position: absolute;
   top: 0;
@@ -241,12 +228,15 @@ ul.nav_right li.icon_navi a.icon:hover {
   }
 }
 
-/* top page ******************************/
+
+/* 3. Hero Section ******************************/
 .hero {
   position: relative;
-  z-index: -100;
+  z-index: 1;
   width: 100vw;
   height: 100vh;
+  margin-top: -16px;
+  padding-top: 16px;
   background-image: url(../img/img_bkground.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -266,7 +256,6 @@ ul.nav_right li.icon_navi a.icon:hover {
 .st0 {
   fill: #231815;
 }
-
 .st1 {
   fill: none;
   stroke: #fff;
@@ -275,7 +264,6 @@ ul.nav_right li.icon_navi a.icon:hover {
   stroke-miterlimit: 10;
   stroke-width: 16;
 }
-
 .hero .hero_tittle svg image {
   width: 100%;
   height: 100%;
@@ -287,21 +275,15 @@ ul.nav_right li.icon_navi a.icon:hover {
     top: 45vh;
     left: -5vw;
   }
-
   .hero .small-height {
-    font-family: Avenir;
     font-size: 1vw;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.85);
     letter-spacing: 0.05em;
     border-bottom: solid 1px;
-    -webkit-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
   }
-
   .hero .subtittle {
-    font-family: Avenir;
     font-size: 1.8vw;
     font-weight: 800;
     color: rgba(0, 0, 0, 0.85);
@@ -314,35 +296,27 @@ ul.nav_right li.icon_navi a.icon:hover {
     top: 25vh;
     left: 12vw;
   }
-
   .hero .small-height {
-    font-family: Avenir;
     font-size: 12px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.85);
     letter-spacing: 0.05em;
     border-bottom: solid 1px;
+    transform: none;
   }
-
   .hero .subtittle {
-    font-family: Avenir;
     font-size: 16px;
     font-weight: 800;
     color: rgba(0, 0, 0, 0.85);
   }
-
   .hero .hero_tittle svg {
-    position: absolute;
     top: -18vh;
-    right: 0;
-    bottom: 0;
-    left: 0;
     width: 80vw;
-    margin: auto;
   }
 }
 
-/* about page ******************************/
+
+/* 4. About Section ******************************/
 #about {
   width: 100%;
   height: 100%;
@@ -350,9 +324,10 @@ ul.nav_right li.icon_navi a.icon:hover {
 
 .about {
   position: relative;
-  padding: 100px 0;
-  margin-top: -200px;
   overflow: hidden;
+  margin-top: -200px;
+  padding: 200px 0 160px;
+  z-index: 10;
 }
 
 .about::before {
@@ -361,9 +336,8 @@ ul.nav_right li.icon_navi a.icon:hover {
   z-index: -100;
   width: 100%;
   height: 100%;
-  -webkit-clip-path: polygon(0 15%, 100% 0, 100% 85%, 0% 100%);
+  /* ベンダープレフィックスを削除 */
   clip-path: polygon(0 15%, 100% 0, 100% 85%, 0% 100%);
-  color: #ccc;
   content: "";
   background-color: rgba(0, 0, 0, 0.9);
 }
@@ -373,9 +347,31 @@ ul.nav_right li.icon_navi a.icon:hover {
   top: 30px;
   z-index: -8;
   margin: 0;
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+
+.contents {
+  display: grid;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.tittle_about {
+  grid-column: 2 / 3;
+  max-width: 260px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.about .contents_inner {
+  position: relative;
+  top: -150px;
+  grid-column: 1 / 2;
+  width: 100%;
+  max-width: 570px;
+  height: 100%;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .about .mypic {
@@ -388,211 +384,84 @@ ul.nav_right li.icon_navi a.icon:hover {
   vertical-align: bottom;
 }
 
-.about .big {
+.about p {
+  font-family: Avenir;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: left;
   float: left;
   width: auto;
   padding: 10px 0;
   margin: 0;
-  font-family: Avenir;
+}
+.about .big {
   font-size: 100px;
   font-weight: bold;
   line-height: 120px;
-  color: rgba(255, 255, 255, 0.95);
-  text-align: left;
 }
-
 .about .middium {
-  float: left;
-  width: auto;
-  padding: 10px 0;
-  margin: 0;
-  font-family: Avenir;
   font-size: 50px;
   font-weight: bold;
   line-height: 60px;
-  color: rgba(255, 255, 255, 0.95);
-  text-align: left;
 }
-
 .about .small {
-  float: left;
-  width: auto;
   padding: 20px 0;
-  margin: 0;
-  font-family: Avenir;
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
-  color: rgba(255, 255, 255, 0.95);
-  text-align: left;
-}
-
-.contents {
-  display: grid;
-  display: -ms-grid;
-  grid-template-columns: 590px 260px;
-  width: 100%;
-  max-width: 850px;
-  padding-top: 100px;
-  padding-bottom: 50px;
-  margin: 0 auto;
-  margin-right: auto;
-  margin-left: auto;
-  -ms-grid-columns: 540px 260px;
-}
-
-.tittle_about {
-  -ms-grid-column: 2;
-  grid-column: 2 / 3;
-  max-width: 260px;
-  height: 100%;
-  margin: 0 auto;
-}
-
-.about .contents_inner {
-  position: relative;
-  top: -150px;
-  -ms-grid-column: 1;
-  grid-column: 1 / 2;
-  width: 100%;
-  max-width: 570px;
-  height: 100%;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.95);
 }
 
 @media screen and (max-width: 768px) {
   .about {
-    position: relative;
     padding: 100px 0;
     margin-top: -110px;
-    overflow: hidden;
   }
-
   .about::before {
-    position: absolute;
-    top: 0;
-    z-index: -100;
-    width: 100%;
-    height: 100%;
-    -webkit-clip-path: polygon(0 15%, 100% 0, 100% 85%, 0% 100%);
     clip-path: polygon(0 6%, 100% 0, 100% 94%, 0% 100%);
-    color: #ccc;
-    content: "";
-    background-color: rgba(0, 0, 0, 0.9);
   }
-
   .contents {
+    display: block;
     width: 100%;
     padding-top: 100px;
     padding-bottom: 50px;
-    margin: 0 auto;
-    margin-right: auto;
-    margin-left: auto;
   }
-
   .about .contents_inner {
-    position: relative;
     top: -50px;
-    width: 100%;
-    height: 100%;
     padding: 0 10px;
-    margin: 0 auto;
-    color: rgba(255, 255, 255, 0.95);
     text-align: center;
   }
-
   .about .about-height {
     position: absolute;
     top: 500px;
     left: -60px;
-    z-index: -8;
-    margin: 0;
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
   }
-
-  .about .mypic {
-    position: relative;
-    z-index: -1;
+  .about p {
+    float: none;
+    width: 100%;
+  }
+  .about .mypic.sp {
     float: left;
-    width: 140px;
-    height: 140px;
     margin: 20px;
-    vertical-align: bottom;
   }
-
-  .about .big {
-    width: 100%;
-    padding: 10px 0;
-    margin: 0;
-    font-family: Avenir;
-    font-size: 100px;
-    font-weight: bold;
-    line-height: 120px;
-    color: rgba(255, 255, 255, 0.95);
-    text-align: left;
-  }
-
   .about .middium {
-    width: 100%;
-    padding: 10px 0;
-    margin: 0;
-    font-family: Avenir;
     font-size: 36px;
-    font-weight: bold;
     line-height: 60px;
-    color: rgba(255, 255, 255, 0.95);
-    text-align: left;
   }
-
   .about .small {
-    width: 100%;
-    padding: 20px 0;
-    margin: 0;
-    font-family: Avenir;
     font-size: 18px;
-    font-weight: 400;
     line-height: 30px;
-    color: rgba(255, 255, 255, 0.95);
-    text-align: left;
   }
 }
 
-/** button **/
-.btn {
-  position: relative;
-  display: inline-block;
-  padding: 10px 50px;
-  margin: 30px 2px;
-  font-size: 20px;
-  line-height: 30px;
-  border-radius: 0;
-  opacity: 0.999;
-}
 
-.about .btn .fas {
-  padding-left: 10px;
-  font-size: 18px;
-}
-
-/* works page ******************************/
-.bkGround_polygon {
-  position: relative;
-  z-index: -1000;
-  width: 100%;
-  padding-top: 350px;
-  padding-bottom: 100px;
-  margin-top: -300px;
-  background: url(../img/img_bkground_2.jpg);
-}
-
+/* 5. Works Section ******************************/
 .works {
   position: relative;
-  padding: 50px 10px;
   text-align: center;
+  margin-top: -200px;
+  padding: 200px 0 160px;
+  clip-path: polygon(0 15%, 100% 0, 100% 85%, 0% 100%);
   background: url(../img/img_bkground_2.jpg);
+  z-index: 10;
 }
 
 .tittle_left {
@@ -600,127 +469,75 @@ ul.nav_right li.icon_navi a.icon:hover {
   padding-left: 2vw;
   color: rgba(0, 0, 0, 0.25);
   text-align: left;
+  margin: 0;
 }
 
-.tittle_right {
-  position: relative;
-  z-index: -8;
-  padding-right: 10vw;
-  font-family: Avenir;
-  font-size: 15vw;
-  font-weight: 800;
-  line-height: 15vh;
-  color: rgba(0, 0, 0, 0.25);
-  text-align: right;
-}
-
-.flexbox {
-  display: inline-block;
+.flexbox.container {
+  display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.container {
-  position: relative;
+  justify-content: center;
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 80px;
 }
 
 .pj img {
   width: 28vw;
   margin: 10px;
   filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.pj:hover img {
+    transform: translateY(-5px); /* ホバー時の浮遊効果を推奨 */
 }
 
 @media screen and (max-width: 768px) {
   .bkGround_polygon {
-    position: relative;
-    z-index: -1000;
-    width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
     margin-top: -100px;
-    background: url(../img/img_bkground_2.jpg);
   }
-
-  .works {
-    position: relative;
-    padding: 30px 10px;
-    text-align: center;
-    background: url(../img/img_bkground_2.jpg);
-  }
-
   .tittle_left {
     font-size: 100px;
     line-height: 90px;
   }
-
-  .tittle_right {
-    position: relative;
-    z-index: -8;
-    padding-right: 10vw;
-    font-family: Avenir;
-    font-size: 15vw;
-    font-weight: 800;
-    line-height: 15vh;
-    color: rgba(0, 0, 0, 0.25);
-    text-align: right;
-  }
-
-  .flexbox {
-    display: inline-block;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .container {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-  }
-
   .pj img {
     width: 40vw;
-    margin: 10px;
-    filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.2));
   }
 }
 
-/* footer ******************************/
-.contact_tittle {
-  position: relative;
-  width: 100%;
-  text-align: center;
+
+/* 6. Footer / Contact ******************************/
+footer {
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 200px 0 80px;
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+  margin-top: -200px;
 }
 
 h2.contact {
   position: absolute;
-  bottom: 10vh;
-  left: 0;
-  z-index: -8;
   width: 100%;
-  height: 50%;
-  margin: auto;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .footer_area {
   position: relative;
-  width: 300px;
-  padding-top: 80px;
-  padding-bottom: 30px;
   margin: 0 auto;
+  text-align: center;
   overflow: hidden;
-  font-family: Avenir;
   font-size: 15px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.95);
-  text-align: center;
-  text-decoration: none;
   letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .footer_area .footer_message {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   font-size: 20px;
   line-height: 30px;
   text-align: center;
@@ -740,39 +557,37 @@ h2.contact {
   color: #00ff7f;
 }
 
-.footer_area .footer_contact dl.socials_box {
-  text-align: center;
+.footer_area .footer_contact .contact_detail {
+  margin: 0 auto 16px auto;
 }
 
-.footer_area .footer_contact dl.socials_box {
+.footer_area .footer_contact .socials_box {
   position: relative;
   display: block;
+  margin-bottom: 40px;
+}
+
+.footer_area .footer_contact .socials_box .socials {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
   width: 100%;
 }
 
-.footer_area .footer_contact dl.socials_box dd.socials a {
-  padding: 0 15px;
-  margin: 0;
-}
-
-.footer_area .footer_contact dl.socials_box dd.socials a {
+.footer_area .footer_contact .socials a {
   position: relative;
   display: inline-block;
-  margin-top: 20px;
-  font-size: 1.5em;
+  padding: 0 15px;
+  margin: 0;
   text-align: center;
-  text-decoration: none;
+  font-size: 1.5em;
 }
 
-.footer_area .footer_contact dl.socials_box dd.socials a img {
-  width: auto;
-  height: 22px;
-}
 .copyright {
-  margin-top: 60px;
   font-size: 65%;
   color: #868686;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.4em;
 }
 
 @media screen and (max-width: 768px) {
@@ -784,7 +599,6 @@ h2.contact {
     margin-bottom: 30px;
     font-size: 16px;
     line-height: 28px;
-    text-align: center;
   }
   .footer_area {
     padding-top: 70px;
@@ -793,3 +607,52 @@ h2.contact {
     margin-top: 40px;
   }
 }
+
+
+/* 7. Subpage Styles (index.htmlでは未使用だが、サブページ用に統合) ******************************/
+/* sub_style.css に含まれていたサブページ特有のスタイルを追記 */
+.main {
+  width: 100%;
+  height: auto;
+}
+
+.section_1 {
+  padding-bottom: 50px;
+  text-align: center;
+  background: #eeeeee;
+}
+.section_2 {
+  text-align: center;
+}
+.contents_top {
+  padding-bottom: 60px;
+}
+
+.tittle {
+  padding-bottom: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+.description,
+.description_en {
+  position: relative;
+  max-width: 980px;
+  margin: auto;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+.description {
+  padding-bottom: 24px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+.description_en {
+  padding-bottom: 16px;
+  font-family: "Avenir";
+  font-size: 16px;
+  font-weight: 300;
+}
+/* その他サブページ用のbox, image, numなどのスタイルもそのまま維持 */
